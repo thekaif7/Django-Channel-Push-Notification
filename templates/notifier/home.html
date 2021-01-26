@@ -1,0 +1,31 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Notifier</title>
+</head>
+<body>
+
+    <h1 style="text-align:center"> welcome to Push Notification </h1>
+
+
+<script>
+    // Create WebSocket connection.
+    const url = 'ws://127.0.0.1:8000/ws/some_url/';
+    const socket = new WebSocket(url);
+
+    // Connection opened
+    socket.addEventListener('open', function (event) {
+        socket.send('Hello Server!');
+    });
+
+    // Listen for messages
+    socket.addEventListener('message', function (event) {
+        
+        console.log('Message from server ', event.data);
+});
+</script>
+</body>
+</html>
