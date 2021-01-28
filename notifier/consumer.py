@@ -1,21 +1,34 @@
 from channels.consumer import AsyncConsumer
-from time import sleep
+import json
+from channels.generic.websocket import AsyncWebsocketConsumer
 import asyncio
 
-class EchoConsumer(AsyncConsumer):
-    async def websocket_connect(self, message):
-        await self.send({
-            "type": "websocket.accept",
-            "text": "connected"
-        })
-        print(message)
 
-    async def websocket_receive(self, message):
-        # await asyncio.sleep(1)
-        for i in ["kaif","Mohammad","Lucky"]:
-            await self.send({
-                "type": "websocket.send",
-                "text": i,
-            })
-            await asyncio.sleep(1)
+
+class NoseyConsumer(AsyncWebsocketConsumer):
+    async def connect(self):
+        await self.accept()
+        event = {
+            "text": "Hello Miya"
+        }
+        await self.send(json.dumps({
+            'message': event
+        }))
+        await self.channel_layer.group_add("gossip",self.channel_name)
+        print(f"Added {self.channel_name} channel to gossip ")
+    
+    async def disconnect(self,close_code):
+    # await self.accept()
+        print("disconnect")
+        await self.channel_layer.group_discard("gossip",self.channel_name)
+        print(f"Remove {self.channel_name} channel to gossip ")
+
+    async def user_gossip(self,event):
+        event = json.loads(event)['gossip']
+        print("Hello Miya")
+
+        await self.send(event)
+        print(f"Got messsage {event} at {self.channel_name}")
+
+            
             

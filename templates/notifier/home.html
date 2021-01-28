@@ -9,12 +9,15 @@
 <body>
 
     <h1 style="text-align:center"> welcome to Push Notification </h1>
-
+    <ul id="notifyList">
+    
+    </ul>
 
 <script>
     // Create WebSocket connection.
     const url = 'ws://127.0.0.1:8000/ws/some_url/';
     const socket = new WebSocket(url);
+    const li = document.querySelector("#notifyList");
 
     // Connection opened
     socket.addEventListener('open', function (event) {
@@ -23,8 +26,19 @@
 
     // Listen for messages
     socket.addEventListener('message', function (event) {
+        console.log(event)
+        const ev = JSON.parse(event.data).message;
+        console.log('Message from server ', ev.text);
         
-        console.log('Message from server ', event.data);
+
+        if(ev.type == "New user"){
+            let el = document.createElement("li");
+            el.innerHTML = `New user <b>${ev.username}</b>
+                            has joined.`
+            nl.appendChild(el);
+        }
+        
+        
 });
 </script>
 </body>
