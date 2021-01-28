@@ -14,20 +14,20 @@ class NoseyConsumer(AsyncWebsocketConsumer):
         await self.send(json.dumps({
             'message': event
         }))
-        await self.channel_layer.group_add("gossip",self.channel_name)
-        print(f"Added {self.channel_name} channel to gossip ")
+        await self.channel_layer.group_add("newuser",self.channel_name)
+        print(f"Added {self.channel_name} channel to newuser")
     
     async def disconnect(self,close_code):
     # await self.accept()
         print("disconnect")
-        await self.channel_layer.group_discard("gossip",self.channel_name)
-        print(f"Remove {self.channel_name} channel to gossip ")
+        await self.channel_layer.group_discard("newuser",self.channel_name)
+        print(f"Remove {self.channel_name} channel to newuser ")
 
-    async def user_gossip(self,event):
-        event = json.loads(event)['gossip']
+    async def new_user_notify(self,event):
         print("Hello Miya")
+        print(event)
 
-        await self.send(event)
+        await self.send(json.dumps(event))
         print(f"Got messsage {event} at {self.channel_name}")
 
             

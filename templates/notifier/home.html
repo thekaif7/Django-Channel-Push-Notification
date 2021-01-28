@@ -23,19 +23,21 @@
     socket.addEventListener('open', function (event) {
         socket.send('Hello Server!');
     });
-
+    var data;
     // Listen for messages
     socket.addEventListener('message', function (event) {
-        console.log(event)
-        const ev = JSON.parse(event.data).message;
-        console.log('Message from server ', ev.text);
+       
+        //console.log(event.data)
+        data = JSON.parse(event.data)
+        console.log(data)
+        console.log('Message from server ', data.type);
         
 
-        if(ev.type == "New user"){
+        if(data.event == "New user"){
             let el = document.createElement("li");
-            el.innerHTML = `New user <b>${ev.username}</b>
+            el.innerHTML = `New user <b>${data.username}</b>
                             has joined.`
-            nl.appendChild(el);
+            li.appendChild(el);
         }
         
         
