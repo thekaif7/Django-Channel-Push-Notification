@@ -24,7 +24,7 @@ class NoseyConsumer(AsyncWebsocketConsumer):
         print(f"Remove {self.channel_name} channel to newuser ")
 
     async def new_user_notify(self,event):
-        print("Hello Miya")
+        # print("Hello Miya")
         print(event)
 
         await self.send(json.dumps(event))

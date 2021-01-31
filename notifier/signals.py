@@ -12,7 +12,7 @@ def announce_new_user(sender,instance,created, **kwargs):
         channel_layer = get_channel_layer()
         async_to_sync(channel_layer.group_send)(
             "newuser" ,{
-                "type" : "new.user.notify",
+                "type" : "new.user.notify", #make function in consumer.py same as name (new_user_notify)
                 "event" : "New user",
                 "username" : instance.username
             }
