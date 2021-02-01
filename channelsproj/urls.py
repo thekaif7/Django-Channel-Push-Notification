@@ -15,10 +15,10 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
-from notifier.views import HomeView,AddNotes
+from notifier.views import HomeView,AppointmentFormView
 
 urlpatterns = [
     path('',HomeView.as_view()),
-    path('addnotes/',AddNotes.as_view()),
+    path('appointment/',AppointmentFormView.as_view()),
     path('admin/', admin.site.urls),
 ]

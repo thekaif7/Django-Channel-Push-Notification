@@ -10,6 +10,9 @@
 
     <h1 style="text-align:center"> welcome to Push Notification </h1>
     <ul id="notifyList">
+        {% for user in data %}
+            <li>{{ user.first_name }}</li>
+        {% endfor %}
     
     </ul>
 

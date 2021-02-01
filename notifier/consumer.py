@@ -8,7 +8,7 @@ import asyncio
 class NoseyConsumer(AsyncWebsocketConsumer):
     async def connect(self):
         await self.accept()
-        event = {
+        event = {  
             "text": "Hello Miya"
         }
         await self.send(json.dumps({
