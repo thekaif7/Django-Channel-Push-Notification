@@ -77,7 +77,7 @@ TEMPLATES = [
 ]
 
 WSGI_APPLICATION = "channelsproj.wsgi.application"
-ASGI_APPLICATION = "channelsproj.asgi.application"
+ASGI_APPLICATION = "channelsproj.routing.application"
 
 
 # Database
