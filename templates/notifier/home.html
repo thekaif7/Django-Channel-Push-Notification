@@ -18,7 +18,8 @@
 
 <script>
     // Create WebSocket connection.
-    const url = 'ws://127.0.0.1:8000/ws/some_url/';
+    const ws_sheme = 'ws';
+    const url =  ws_sheme + '://' +  window.location.host + ':8001' + '/ws/some_url/';
     const socket = new WebSocket(url);
     const li = document.querySelector("#notifyList");
 
