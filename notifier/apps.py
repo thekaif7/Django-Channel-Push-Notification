@@ -5,6 +5,6 @@ class NotifierConfig(AppConfig):
     name = 'notifier'
 
     def ready(self):
-        from . import signals
+        from notifier import signals
         
 
