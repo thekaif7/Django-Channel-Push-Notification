@@ -56,4 +56,3 @@ coverage.xml
 .pytest_cache/
 cover/
 channelsproj/__pycache__/settings.cpython-37.pyc
-*.ini
