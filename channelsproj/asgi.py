@@ -8,16 +8,15 @@ from notifier.consumer import NoseyConsumer
 from channels.auth import AuthMiddlewareStack
 
 
-os.environ.setdefault("DJANGO_SETTINGS_MODULE", f'{config("PROJECT_NAME")}.settings')
-django.setup()
+os.environ.setdefault("DJANGO_SETTINGS_MODULE", "channelsproj.settings")
 
-# application = ProtocolTypeRouter({
-#     "http": get_asgi_application(),
-#     "websocket": AuthMiddlewareStack(URLRouter([
-#         path("ws/some_url/",NoseyConsumer.as_asgi()),
-#     ]))
-#     # Just HTTP for now. (We can add other protocols later.)
-# })
+application = ProtocolTypeRouter({
+    "http": get_asgi_application(),
+    "websocket": AuthMiddlewareStack(URLRouter([
+        path("ws/some_url/",NoseyConsumer.as_asgi()),
+    ]))
+    # Just HTTP for now. (We can add other protocols later.)
+})
 
 
-application = get_asgi_application()
+# application = get_asgi_application()

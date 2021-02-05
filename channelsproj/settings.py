@@ -23,12 +23,13 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/3.1/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = config("SECRET_KEY", None)
+SECRET_KEY = "7p(7o)tq+_xn1mf^9#_$@*l&a)+^66ll#g*k(i&ka#w9pk$7pm" 
+# config("SECRET_KEY", None)
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = config("DEBUG", default=False, cast=bool)
 
-ALLOWED_HOSTS = ["161.35.50.151", "127.0.0.1"]
+ALLOWED_HOSTS = ["161.35.50.151", "127.0.0.1","0.0.0.0"]
 
 
 # Application definition
@@ -77,7 +78,7 @@ TEMPLATES = [
 ]
 
 WSGI_APPLICATION = "channelsproj.wsgi.application"
-ASGI_APPLICATION = "channelsproj.routing.application"
+ASGI_APPLICATION = "channelsproj.asgi.application"
 
 
 # Database
