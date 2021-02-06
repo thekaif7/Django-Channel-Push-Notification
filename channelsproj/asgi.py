@@ -13,7 +13,7 @@ os.environ.setdefault("DJANGO_SETTINGS_MODULE", "channelsproj.settings")
 application = ProtocolTypeRouter({
     "http": get_asgi_application(),
     "websocket": AuthMiddlewareStack(URLRouter([
-        path("ws/some_url/",NoseyConsumer.as_asgi()),
+        path("ws/notify/",NoseyConsumer.as_asgi()),
     ]))
     # Just HTTP for now. (We can add other protocols later.)
 })
