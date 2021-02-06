@@ -6,5 +6,6 @@ class NotifierConfig(AppConfig):
 
     def ready(self):
         from notifier import signals
+        print("hello")
         
 
